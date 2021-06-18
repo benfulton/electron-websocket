@@ -7,18 +7,18 @@ const path = require('path')
  *************************************************************/
 
 const createPyProc = () => {
-  let port = 4242
+  let port = 8765
 
   pyProc = null;
   try {
     var spawn = require('child_process').spawn;
-    pyProc = spawn('python.exe', ['server.py', port]);
+    pyProc = spawn('python', ['server.py', port]);
 
     pyProc.on('error', (e) => {
       console.log(e);
     });
     pyProc.on('close', (code) => {
-      console.log("Server exited with code ${code}");
+      console.log("Server exited with code " + code);
     });
 
   if (pyProc != null) {
